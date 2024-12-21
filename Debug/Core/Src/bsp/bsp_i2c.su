@@ -1,4 +1,0 @@
-../Core/Src/bsp/bsp_i2c.c:31:6:bsp_i2c_status	16	static
-../Core/Src/bsp/bsp_i2c.c:36:6:bsp_i2c1_is_device_ready	32	static
-../Core/Src/bsp/bsp_i2c.c:42:6:bsp_i2c_write_mem	48	static
-../Core/Src/bsp/bsp_i2c.c:52:6:bsp_i2c_read_mem	48	static

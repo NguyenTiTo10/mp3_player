@@ -1,3 +1,0 @@
-../Core/Src/middlewares/list_song.c:40:9:get_list_song_size	1
-../Core/Src/middlewares/list_song.c:42:13:get_song_name_info	2
-../Core/Src/middlewares/list_song.c:51:13:get_author_name_info	2

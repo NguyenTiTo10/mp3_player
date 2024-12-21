@@ -1,5 +1,0 @@
-../Core/Src/driver/drv_button.c:46:6:update_button_state	9
-../Core/Src/driver/drv_button.c:102:6:get_key_input	2
-../Core/Src/driver/drv_button.c:116:5:is_button_pressed	2
-../Core/Src/driver/drv_button.c:132:5:is_button_held	2
-../Core/Src/driver/drv_button.c:147:6:HAL_GPIO_EXTI_Callback	7

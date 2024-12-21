@@ -1,9 +1,0 @@
-../Core/Src/sys/system_display.c:31:24:system_display_init	8	static
-../Core/Src/sys/system_display.c:38:24:system_display_boot_state	8	static
-../Core/Src/sys/system_display.c:44:24:system_display_wait_state	8	static
-../Core/Src/sys/system_display.c:50:24:system_display_playlist_state	16	static
-../Core/Src/sys/system_display.c:56:24:system_display_music_player_default_state	16	static
-../Core/Src/sys/system_display.c:63:24:system_display_music_player_title_state	16	static
-../Core/Src/sys/system_display.c:69:24:system_display_music_player_playback_state	16	static
-../Core/Src/sys/system_display.c:85:24:system_display_music_player_play_mode_state	16	static
-../Core/Src/sys/system_display.c:103:6:system_display_update	8	static

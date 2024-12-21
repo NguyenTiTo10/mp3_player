@@ -1,7 +1,0 @@
-../Core/Src/bsp/bsp_dfplayer.c:36:6:bsp_transmit_data	16	static
-../Core/Src/bsp/bsp_dfplayer.c:43:6:bsp_receive_data	16	static
-../Core/Src/bsp/bsp_dfplayer.c:50:9:bsp_check_transmit_status	4	static
-../Core/Src/bsp/bsp_dfplayer.c:58:9:bsp_check_receive_status	4	static
-../Core/Src/bsp/bsp_dfplayer.c:65:9:bsp_check_playing_status	16	static
-../Core/Src/bsp/bsp_dfplayer.c:75:6:HAL_UART_TxCpltCallback	16	static,ignoring_inline_asm
-../Core/Src/bsp/bsp_dfplayer.c:86:6:HAL_UART_RxCpltCallback	16	static,ignoring_inline_asm

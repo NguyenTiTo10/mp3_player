@@ -1,8 +1,14 @@
-# Ignore the Drivers folder 
-Drivers/ 
+# Ignore the Drivers folder
+Drivers/
 
-# Ignore the Debug folder 
+# Ignore the Debug folder
 Debug/
-*.mxproject/
-*.project/
-*mp3_player Debug.lauch/
+
+# Ignore .mxproject files
+*.mxproject
+
+# Ignore .project files
+*.project
+
+# Ignore mp3_player Debug.lauch files
+*mp3_player Debug.lauch

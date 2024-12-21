@@ -1,2 +1,0 @@
-../Core/Src/bsp/bsp_gpio.c:30:6:bsp_gpio_write_pin	2
-../Core/Src/bsp/bsp_gpio.c:37:6:bsp_gpio_read_pin	1
