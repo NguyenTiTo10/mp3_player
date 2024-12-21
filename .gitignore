@@ -1,0 +1,5 @@
+# Ignore the Drivers folder 
+Drivers/ 
+
+# Ignore the Debug folder 
+Debug/
