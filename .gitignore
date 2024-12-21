@@ -3,3 +3,6 @@ Drivers/
 
 # Ignore the Debug folder 
 Debug/
+*.mxproject/
+*.project/
+*mp3_player Debug.lauch/
