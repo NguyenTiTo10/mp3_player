@@ -1,0 +1,88 @@
+@startuml system_playing
+actor User
+participant "Main System" as System_main
+participant OLED
+participant DFPlayer
+participant Rotation_sensor as "Rotation Sensor"
+
+note right of System_main
+  playbackStatus = 0: Pause - Stop playing
+  playbackStatus = 1: Playing
+  playbackMode = 0: Normal_Default - Play only once
+  playbackMode = 1: Repeat
+  playbackMode = 2: Random
+end note
+
+loop system_playing_song_screen
+
+  User -> System_main: Change the playback status
+
+  alt Detect_button_press == mid && detect_click_hold == 1 click
+    alt playbackMode == 0
+      System_main -> DFPlayer: Send command to play back the current track
+      activate DFPlayer
+      DFPlayer -> System_main: Return Playback status
+      deactivate DFPlayer
+      System_main -> OLED: Display "Playing" status
+      System_main -> System_main: playbackMode = 1
+    end
+    note right of OLED
+      System controls playback is currently playing
+    end note
+
+    alt playbackMode == 1
+      System_main -> DFPlayer: Send command to pause the current track
+      activate DFPlayer
+      DFPlayer -> System_main: Return Playback status
+      deactivate DFPlayer
+      System_main -> OLED: Display "Paused" status
+      System_main -> System_main: playbackMode = 0
+    end
+    note right of OLED
+      System controls playback is currently paused
+    end note
+  end
+
+  User -> System_main: Change the playback mode
+
+  alt Detect_button_press == left && detect_click_hold == 2 click
+    alt playbackMode == 0
+      System_main -> DFPlayer: Change the playback mode to Random
+      activate DFPlayer
+      DFPlayer -> System_main: Return playback mode status
+      deactivate DFPlayer
+      System_main -> OLED: Display the random mode
+      System_main -> System_main: playbackMode = 2
+    end
+    note right of System_main
+      Set playbackMode to "Random"
+    end note
+
+    alt playbackMode == 1
+      System_main -> DFPlayer: Change the playback mode to Normal
+      activate DFPlayer
+      DFPlayer -> System_main: Return playback mode status
+      deactivate DFPlayer
+      System_main -> OLED: Display the normal mode
+      System_main -> System_main: playbackMode = 0
+    end
+    note right of System_main
+      Set playbackMode to "Normal"
+    end note
+
+    alt playbackMode == 2
+      System_main -> DFPlayer: Change the playback mode to Repeat
+      activate DFPlayer
+      DFPlayer -> System_main: Return playback mode status
+      deactivate DFPlayer
+      System_main -> OLED: Display the Repeat mode
+      System_main -> System_main: playbackMode = 1
+    end
+    note right of System_main
+      Set playbackMode to "Repeat"
+    end note
+  end
+
+end
+
+@enduml

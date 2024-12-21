@@ -1,0 +1,32 @@
+@startuml system_idle_screen
+
+participant "System init"   as    System_init
+participant "OLED"          as    OLED
+participant "Buzzer"        as    Buzzer
+participant "System main"   as    System_main
+
+
+== Notify the idle scrren ==
+
+group Notify by OLED
+System_init -> OLED: Display logo "Walkman"
+activate OLED
+OLED -> System_init: Return display logo finish status
+deactivate OLED
+end
+
+group Notify by buzzer
+System_init -> Buzzer: Make the rhythm "Mario"
+activate Buzzer
+Buzzer -> System_init: Return the make rhythm finish status
+deactivate Buzzer
+end
+
+alt [Detect_button_press == Mid && Detect_click_hold == Hold]
+    System_init -> OLED: Display the default mode of list song
+    System_init -> System_main: Move the next process system.
+else
+    System_init -> System_init: Staying at the current state
+end
+
+@enduml

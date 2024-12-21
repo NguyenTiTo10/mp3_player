@@ -1,0 +1,60 @@
+@startuml System_init
+
+actor User
+participant "System init"   as    MainSystem
+participant BUTTON          as    "button"
+participant DFPlayer        as    "dfplayer"
+participant RotationSensor  as    "rotation Sensor" 
+participant OLED            as    "oled"
+participant Buzzer          as    "buzzer"
+
+
+User -> MainSystem: Power_On
+activate MainSystem
+
+== Process view - System init manager ==
+
+
+group GPIO connect
+MainSystem -> DFPlayer
+
+group UART2 connect
+MainSystem -> DFPlayer: Init UART2
+activate DFPlayer
+DFPlayer -> DFPlayer: Config settings UART2
+DFPlayer -> MainSystem: Return UART2 status
+deactivate DFPlayer
+end
+
+group ADC1 connect
+MainSystem -> RotationSensor: Init ADC1 - IN1
+activate RotationSensor
+RotationSensor -> RotationSensor: Config settings ADC - IN1
+RotationSensor -> MainSystem: Return ADC_1 status
+deactivate RotationSensor
+end
+
+group I2C2 connect
+MainSystem -> OLED: Init I2C2 
+activate OLED
+OLED -> OLED: Config settings I2C2
+OLED -> MainSystem: Return I2C2 status
+deactivate OLED
+end
+
+group TIMER_4 connect
+MainSystem -> Buzzer: Init TIMER_4
+activate Buzzer
+Buzzer -> Buzzer: Config settings TIMER_4 - PWM - Channel 1
+Buzzer -> MainSystem: Return TIMER_4 status
+deactivate Buzzer
+end
+
+deactivate MainSystem
+
+' note below of MainSystem
+'   Communication protocols:
+'     - I2C
+
+
+@enduml

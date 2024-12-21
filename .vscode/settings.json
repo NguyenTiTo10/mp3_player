@@ -1,0 +1,31 @@
+{
+  "files.associations": {
+    "stddef.h": "c",
+    "drv_ssd1306.h": "c",
+    "stm32f4xx_hal.h": "c",
+    "stdint.h": "c",
+    "ssd1306_tests.h": "c",
+    "string.h": "c",
+    "draw_ui_icons.h": "c",
+    "fonts.h": "c",
+    "bsp_gpio.h": "c",
+    "main.h": "c",
+    "stdbool.h": "c",
+    "stm32f4xx_hal_conf.h": "c",
+    "stm32f4xx_hal_gpio.h": "c",
+    "compare": "c",
+    "system_display.h": "c",
+    "drv_button.h": "c",
+    "system_manager.h": "c",
+    "driver_button.h": "c",
+    "sys_button.h": "c",
+    "bsp_button.h": "c",
+    "bsp_dfplayer.h": "c",
+    "bsp_timer.h": "c",
+    "bsp_i2c.h": "c",
+    "stdlib.h": "c",
+    "math.h": "c",
+    "list_song.h": "c",
+    "drv_dfplayer.h": "c"
+  }
+}

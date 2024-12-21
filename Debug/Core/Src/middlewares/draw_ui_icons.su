@@ -1,0 +1,17 @@
+../Core/Src/middlewares/draw_ui_icons.c:183:6:ssd1306_starting_screen	16	static
+../Core/Src/middlewares/draw_ui_icons.c:190:6:ssd1306_playlist_menu	40	static
+../Core/Src/middlewares/draw_ui_icons.c:217:6:ssd1306_music_player_menu_default	32	static
+../Core/Src/middlewares/draw_ui_icons.c:230:6:ssd1306_music_player_menu_title	48	static
+../Core/Src/middlewares/draw_ui_icons.c:242:6:ssd1306_music_player_menu_play	24	static
+../Core/Src/middlewares/draw_ui_icons.c:249:6:ssd1306_music_player_menu_pause	24	static
+../Core/Src/middlewares/draw_ui_icons.c:256:6:ssd1306_music_player_menu_once	24	static
+../Core/Src/middlewares/draw_ui_icons.c:262:6:ssd1306_music_player_menu_repeat	24	static
+../Core/Src/middlewares/draw_ui_icons.c:268:6:ssd1306_music_player_menu_randomize	24	static
+../Core/Src/middlewares/draw_ui_icons.c:275:6:ssd1306_draw_menu_button_fsm	24	static
+../Core/Src/middlewares/draw_ui_icons.c:309:6:ssd1306_select	40	static
+../Core/Src/middlewares/draw_ui_icons.c:323:6:ssd1306_deselect	40	static
+../Core/Src/middlewares/draw_ui_icons.c:336:6:ssd1306_deselect_fsm	32	static
+../Core/Src/middlewares/draw_ui_icons.c:370:6:ssd1306_icon_transition	40	static
+../Core/Src/middlewares/draw_ui_icons.c:383:6:ssd1306_scroll_string	176	static
+../Core/Src/middlewares/draw_ui_icons.c:423:6:ssd1306_get_scroll_flag	4	static
+../Core/Src/middlewares/draw_ui_icons.c:425:6:ssd1306_set_scroll_flag	16	static

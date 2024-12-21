@@ -1,0 +1,70 @@
+@startuml
+actor User
+
+participant "Left Button" as LBtn
+participant "Middle Button" as MBtn
+participant "Right Button" as RBtn
+participant "Display" as Display
+
+' Power on and show logo
+User -> Display : Power On
+Display -> Display : show_logo()
+
+' Hold Middle Button for 2 seconds to switch to "List Song" screen
+User -> MBtn : Hold 2s
+MBtn -> Display : switch_to_list_song_screen()
+Display -> Display : set_screen_state("List Song")
+
+' In "List Song" screen, navigate up/down and select song
+User -> LBtn : Click
+LBtn -> Display : move_cursor_up()
+Display -> Display : update_cursor_position()
+
+User -> RBtn : Click
+RBtn -> Display : move_cursor_down()
+Display -> Display : update_cursor_position()
+
+User -> MBtn : Click
+MBtn -> Display : select_song()
+Display -> Display : set_screen_state("Playing Song")
+Display -> Display : show_playing_song_screen()
+
+' In "Playing Song" screen, play/pause, enter mode, or return to list
+User -> MBtn : Click
+MBtn -> Display : play_pause_song()
+Display -> Display : update_play_pause_icon()
+
+User -> RBtn : Click
+RBtn -> Display : switch_to_mode_screen()
+Display -> Display : set_screen_state("Mode")
+Display -> Display : show_mode_screen()
+
+User -> MBtn : Double Click
+MBtn -> Display : return_to_list_song_screen()
+Display -> Display : set_screen_state("List Song")
+Display -> Display : show_list_song_screen()
+
+' In "Mode" screen, navigate and select mode
+User -> LBtn : Click
+LBtn -> Display : move_cursor_up()
+Display -> Display : update_cursor_position()
+
+User -> RBtn : Click
+RBtn -> Display : move_cursor_down()
+Display -> Display : update_cursor_position()
+
+User -> MBtn : Click
+MBtn -> Display : select_mode()
+alt mode == "Default"
+    Display -> Display : switch_back_to_playing_song_screen()
+    Display -> Display : set_screen_state("Playing Song")
+else mode == "Repeat" or mode == "Random"
+    Display -> Display : update_mode_setting()
+end
+
+' Hold Middle Button to reboot (from any screen)
+User -> MBtn : Hold
+MBtn -> Display : reboot()
+Display -> Display : show_logo()
+
+@enduml

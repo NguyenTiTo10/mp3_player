@@ -1,0 +1,128 @@
+@startuml
+actor User
+
+participant "Select Button" as SelBtn
+participant "Drv_Btn" as DrvBtn
+participant "System_Button" as SysBtn
+participant "System_Manager" as SysMan
+participant "System_SD" as SysSD
+participant "Drv_SD" as DrvSD
+participant "System_Display" as SysDis
+participant "Drv_OLED" as DrvOLED
+participant "OLED" as OLED
+
+SelBtn -> DrvBtn : click on Select Button
+DrvBtn -> SysBtn : interrupt_callback()
+SysBtn -> SysBtn : detect_button()
+
+' Screen state == 0 (unchange) and button_state change
+' The screen is turned off and when you 1 click/ 2 click/ hold it will all turn on the screen
+
+SysBtn -> SysMan : button_state == 1 || 2 || 3
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 0
+SysMan -> SysDis : set_curr_screen_state(1)
+SysMan -> SysSD : get_songs_list()
+SysSD -> DrvSD : get_song_info()
+DrvSD -> SysSD : song_info
+SysSD -> SysMan : songs_list[]
+SysMan -> SysDis : display_screen_with_songs_list()
+SysDis -> DrvOLED : screen_1()
+DrvOLED -> OLED : switch screen from 0 to 1 (Turn on the screen)
+
+' Screen state == 1 (unchange) and button_state change
+
+' The screen is now at the Song Screen (screen state 1) which is currently displaying Song list if the button is detected to be 1 click
+' The system will check and set current song index (curr_song_index = cursor_index)
+' It will request the System_SD for the detailed info of the song based on the curr_song_index
+' The SD will return a detailed info of the current song names, artists, album cover and time of the song
+' The SysMan will then issue the Song Screen (screen state 2) based on the info of the requested song
+
+SysBtn -> SysMan : button_state == 1
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 1
+SysMan -> SysDis : set_curr_screen_state(2)
+SysMan -> SysMan : get_cursor_index()
+SysMan -> SysMan : set_curr_song_index()
+SysMan -> SysSD : get_detail_song_info()
+SysSD -> DrvSD : get_song_info()
+DrvSD -> SysMan : detailed_info_of_song[]
+SysMan -> SysDis : display_screen_with_song_info()
+SysDis -> DrvOLED : screen_2()
+DrvOLED -> OLED : switch screen 1 to 2 based on the cursor index
+
+' Screen state == 1 (unchange) and button_state == 2
+
+' The idea is that when you double click it switch to current song is playing (screen state 2)
+' The screen is now at the Song Screen (screen state 1) which is currently displaying Song list if the button is detected to be 2 click
+' The same thing will happen when you 1 click
+' But you may ask how if first initialization how can the system know which song is currently playing?
+' We will initialize the curr_song_index to be 0 (the first song of the list) every time it first booted up
+
+SysBtn -> SysMan : button_state == 2
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 1
+SysMan -> SysDis : set_curr_screen_state(2)
+SysMan -> SysMan : get_cursor_index()
+SysMan -> SysSD : get_detail_song_info()
+SysSD -> DrvSD : get_song_info()
+DrvSD -> SysMan : detailed_info_of_song[]
+SysMan -> SysDis : display_screen_with_song_info()
+SysDis -> DrvOLED : screen_2()
+DrvOLED -> OLED : switch screen 1 to 2 based on the current song index
+
+' Screen state == 1 (unchange) and button_state == 3
+
+' Powering off at screen state 1
+
+SysBtn -> SysMan : button_state == 3
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 1
+SysMan -> SysDis : set_curr_screen_state(3)
+SysMan -> SysDis : turn_off_screen()
+SysDis -> DrvOLED : screen_3()
+DrvOLED -> OLED : switch screen 1 to 3 (Turn off the screen)
+
+' Screen state == 2 (unchange) and button_state change
+
+' Screen state == 2 (unchange) and button_state == 1
+
+' Change the Icon of play/pause button 
+
+SysBtn -> SysMan : button_state == 1
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 2
+SysMan -> SysMan : Play_or_Pause()
+SysMan -> SysDis : change_play_pause_icon()
+SysDis -> DrvOLED : change_icon()
+DrvOLED -> OLED : Change the pause/play icon
+
+' Screen state == 2 (unchange) and button_state == 2
+
+' Switch from screen state 2 to screen state 1
+
+SysBtn -> SysMan : button_state == 2
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 2
+SysMan -> SysDis : set_curr_screen_state(1)
+SysMan -> SysSD : get_songs_list()
+SysSD -> DrvSD : get_song_info()
+DrvSD -> SysSD : song_info
+SysSD -> SysMan : songs_list[]
+SysMan -> SysDis : display_screen_with_songs_list()
+SysDis -> DrvOLED : screen_1()
+DrvOLED -> OLED : switch screen from 2 to 1 (Switch to Song screen from Main screen)
+
+' Screen state == 2 (unchange) and button_state == 3
+
+' Change the mode icon
+
+SysBtn -> SysMan : button_state == 3
+SysMan -> SysDis : get_curr_screen_state()
+SysDis -> SysMan : screen_state == 2
+SysMan -> SysMan : change_mode()
+SysMan -> SysDis : change_mode_icon()
+SysDis -> DrvOLED : change_icon()
+DrvOLED -> OLED : Change the mode icon
+
+@enduml

@@ -1,0 +1,5 @@
+../Core/Src/bsp/bsp_rotation_sensor.c:40:6:bsp_adc_start	8	static
+../Core/Src/bsp/bsp_rotation_sensor.c:42:6:bsp_adc_stop	8	static
+../Core/Src/bsp/bsp_rotation_sensor.c:44:10:bsp_get_adc_value	16	static
+../Core/Src/bsp/bsp_rotation_sensor.c:50:9:bsp_check_adc_flag	16	static
+../Core/Src/bsp/bsp_rotation_sensor.c:59:6:HAL_ADC_ConvCpltCallback	24	static,ignoring_inline_asm

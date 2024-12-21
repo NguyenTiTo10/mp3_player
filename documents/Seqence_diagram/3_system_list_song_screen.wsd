@@ -1,0 +1,57 @@
+@startuml system_list_song_screen
+actor User
+participant "System main"   as    System_main
+participant OLED
+participant DFPLAYER
+participant BUZZER
+participant "System end"    as    System_end
+group interact with OLED
+
+System_main -> OLED: Display list of songs
+activate System_main
+activate OLED
+OLED -> System_main: Return display list song status  
+deactivate OLED
+System_main -> System_main: Create a default cursor at first song (cursor = 1)
+deactivate System_main
+
+end
+
+
+loop Interact with system list song state
+    User -> System_main: Press button
+
+    alt Detect_button_press == Left && Detect_click_hold == 1 click
+        alt Cursor > 1
+            System_main -> System_main: Cursor--
+            System_main -> OLED: Move the cursor of display up
+        end
+
+    else Detect_button_press == Right && Detect_click_hold == 1 click
+        alt Cursor < SONG_NUMBER
+            System_main -> System_main: Cursor++
+            System_main -> OLED: Move the cursor of display down
+        note right of System_main
+          SONG_NUMBER = 10
+        end note
+        end
+
+    else Detect_button_press == Mid && Detect_click_hold == 1 click
+        System_main -> System_main: Transition to Playing Song State
+        System_main -> OLED: Display the playing song screen
+        System_main -> DFPLAYER: Play the song the with the index = cursor
+    end
+
+    User -> System_main: Hold button
+    alt Detect_button_press == MID && Detect_click_hold == 1 hold
+        System_main -> System_end: Turn off the mp3 player
+        System_main -> OLED: Display the logo image
+        System_main -> BUZZER: Make the rhythm of "Nokia" sound
+    end
+
+end
+@enduml
+
+
+
+
